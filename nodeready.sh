@@ -42,6 +42,11 @@ say "installing nvm"
 NVM_DIR="$HOME/.nvm"
 if mkdir "$NVM_DIR" >/dev/null 2>&1; then
 	$CURL - 'https://github.com/agnoster/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh"
+	grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1 || \
+		(cat <<NVMLOAD
+[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh" # Load nvm into shell session
+NVMLOAD
+) | cat >> ~/.bash_profile
 else
 	hmm "nvm seems to already be installed - if you want to re-install, run the following and try again:"
 	echo "    $ rm -rf ~/.nvm"
