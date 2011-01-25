@@ -1,4 +1,4 @@
-#<!--
+# crap, someone's looking at the code! quick, hide in a comment! <!--
 <?php include 'nodeready.sh'; ?>
 exit
 -->
