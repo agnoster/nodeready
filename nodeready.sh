@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# BOOTSTRAPINATOR
+# MESSAGING primitives
 say() { echo "# [nodeready] $*"; }
 yay() { say "\033[1;32m$*\033[0m"; }
 hmm() { say "\033[1;33m$*\033[0m"; }
@@ -8,21 +6,23 @@ die() { say "\033[1;31m$*\033[0m"; exit -1; }
 
 say "strap yourself in, this could get bumpy..."
 
+# BOOTSTRAPINATOR
 has() { which $1 >/dev/null 2>&1; }
 use() { has $1 || return; export $2="$3" && yay "using '$1' $4"; }
 use_curl() { use $1 CURL "$*" "download files"; }
 use_inst() { use $1 INST "$*" "to install new packages"; }
-
 inst() {
 	say "installing $*"
 	$INST $* >/dev/null 2>&1 && yay "installed successfully" || die "install failed"
 }
 
+# Let's see what we have...
 use_inst apt-get -y install || \
 use_inst brew install || \
 use_inst yum -y install || \
 hmm "no package manager found, attempting to continue without one"
 
+# Well, we need a way to download files for sure
 if has curl; then
 	use_curl curl -s -C - -o
 elif has wget; then
@@ -30,14 +30,15 @@ elif has wget; then
 else
 	hmm "did not find curl or wget, trying to install curl..."
 	if inst curl; then
-		use_curl curl -s
+		use_curl curl -s -C - -o
 	elif inst wget; then
-		use_curl wget -q -O -
+		use_curl wget -q -c -O
 	else
 		die "cannot proceed without either curl or wget!"
 	fi
 fi
 
+# Start with nvm
 say "installing nvm"
 NVM_DIR="$HOME/.nvm"
 if mkdir "$NVM_DIR" >/dev/null 2>&1; then
@@ -58,6 +59,7 @@ type nvm 2>/dev/null | grep "function" >/dev/null || {
 	die "failed to load nvm"
 	}
 
+# Get the latest and greatest node
 if nvm sync; then
 	VERSION=`nvm version latest`
 else

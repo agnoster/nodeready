@@ -1,0 +1,166 @@
+#<!--
+# MESSAGING primitives
+say() { echo "# [nodeready] $*"; }
+yay() { say "\033[1;32m$*\033[0m"; }
+hmm() { say "\033[1;33m$*\033[0m"; }
+die() { say "\033[1;31m$*\033[0m"; exit -1; }
+
+say "strap yourself in, this could get bumpy..."
+
+# BOOTSTRAPINATOR
+has() { which $1 >/dev/null 2>&1; }
+use() { has $1 || return; export $2="$3" && yay "using '$1' $4"; }
+use_curl() { use $1 CURL "$*" "download files"; }
+use_inst() { use $1 INST "$*" "to install new packages"; }
+inst() {
+	say "installing $*"
+	$INST $* >/dev/null 2>&1 && yay "installed successfully" || die "install failed"
+}
+
+# Let's see what we have...
+use_inst apt-get -y install || \
+use_inst brew install || \
+use_inst yum -y install || \
+hmm "no package manager found, attempting to continue without one"
+
+# Well, we need a way to download files for sure
+if has curl; then
+	use_curl curl -s -C - -o
+elif has wget; then
+	use_curl wget -q -c -O
+else
+	hmm "did not find curl or wget, trying to install curl..."
+	if inst curl; then
+		use_curl curl -s -C - -o
+	elif inst wget; then
+		use_curl wget -q -c -O
+	else
+		die "cannot proceed without either curl or wget!"
+	fi
+fi
+
+# Start with nvm
+say "installing nvm"
+NVM_DIR="$HOME/.nvm"
+if mkdir "$NVM_DIR" >/dev/null 2>&1; then
+	$CURL - 'https://github.com/agnoster/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh"
+	grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1 || \
+		(cat <<-NVMLOAD
+		[[ -s "\$HOME/.nvm/nvm.sh" ]] && source "\$HOME/.nvm/nvm.sh" # Load nvm into shell session
+		NVMLOAD
+) | cat >> ~/.bash_profile
+else
+	hmm "nvm seems to already be installed - if you want to re-install, run the following and try again:"
+	echo "    rm -rf ~/.nvm"
+fi
+
+source "$NVM_DIR/nvm.sh" >/dev/null 2>&1
+type nvm 2>/dev/null | grep "function" >/dev/null || {
+	head -n1 "$NVM_DIR/nvm.sh" | grep "\<html" >/dev/null && hmm "maybe github is down?"
+	die "failed to load nvm"
+	}
+
+# Get the latest and greatest node
+if nvm sync; then
+	VERSION=`nvm version latest`
+else
+	VERSION="v0.3.6"
+	hmm "couldn't sync to get the latest version, so we're gonna to fall back to installing $VERSION"
+fi
+say "installing latest node ($VERSION)"
+say "(this could take a while, maybe get a coffee?)"
+nvm install $VERSION >/dev/null 2>&1 || die "crap, node install failed!"
+yay "node $VERSION installed"
+say "setting it as your default..."
+nvm alias default $VERSION
+yay "all done!"
+say "to load node, just start a new shell or type:"
+echo "    source ~/.nvm/nvm.sh"
+
+exit
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>nodeready</title>
+    <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+    body {
+        margin-top: 1.0em;
+        color: white;
+        font-family: "Helvetica Neue", "Helvetica", "Arial", "FreeSans";
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+      color: black;
+    }
+    h1,h2,h3 { font-family: Orbitron; }
+    h1,h2,h3,a { color: #da1557; }
+    h1 { font-size: 3.8em; margin-bottom: 3px; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; }
+    h3 { text-align: center; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+        pre { background: #000; color: #fff; padding: 15px; margin: 0px -15px; }
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+    </style>
+    
+</head>
+
+<body>
+  <a href="http://github.com/agnoster/nodeready"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+  <div id="container">
+
+      <h1 id='nodeready'>nodeready</h1>
+
+<p>Inspired by <a href='https://github.com/joshfng'>Joshua Frye</a>&#8217;s <a href='https://github.com/joshfng/railsready'>Rails Ready</a>, <a href='https://github.com/agnoster/nodeready'>nodeready</a> is a one-step installer for a fully-functioning <a href='http://nodejs.org/'>Node.js</a> development environment.</p>
+
+<pre><code>curl http://agnoster.github.com/nodeready/ | sh</code></pre>
+
+<h2 id='what_does_it_install'>What does it install?</h2>
+
+<ol>
+<li><a href='https://github.com/creationix/nvm'>nvm</a> &#8211; <a href='https://github.com/creationix'>Tim Caswell</a>&#8217;s Node Version Manager</li>
+
+<li><a href='http://nodejs.org/'>node</a> &#8211; The latest, greatest version of (0.3.6, as of this writing)</li>
+
+<li><a href='http://npmjs.org/'>npm</a> &#8211; <a href='https://github.com/isaacs'>Isaac Z. Schlueter</a>&#8217;s Node Package Manager</li>
+</ol>
+
+<h2 id='caveats'>Caveats</h2>
+
+<p><a href='https://github.com/agnoster/nodeready'>nodeready</a> installs everything to <code>~/.nvm/</code>, owned by your user. Pro: you don&#8217;t need to sudo. Con: maybe you wanted a system-wide version. Wierdo.</p>
+
+<p>Side-effects of <a href='https://github.com/agnoster/nodeready'>nodeready</a> may also include horked node installations, blurry vision, feelings of giddy elation, irresistable attractiveness to members of any and all desirable sexes, low birth weight, high birth weight, and triskaidekaphobia.</p>
+
+<h2 id='whoa_whoa_who_died_and_made_you_god'>Whoa, whoa, who died and made you God?</h2>
+
+<p>This is <a href='http://gettingreal.37signals.com/ch04_Make_Opinionated_Software.php'>opinionated software</a>. I like not having to faff around with sudo, being able to test against multiple language versions at the drop of a hat, and managing my package dependencies with a <code>package.json</code> file. So this script installs <a href='http://nodejs.org/'>node</a> using <a href='https://github.com/creationix/nvm'>nvm</a>, so that you can install any version you want in the future.</p>
+
+<h2 id='so_whats_the_rundown'>So what&#8217;s the rundown?</h2>
+
+<ol>
+<li>Create <code>~/.nvm</code></li>
+
+<li>Download <a href='https://github.com/creationix/nvm'>nvm</a>.sh to <code>~/.nvm</code></li>
+
+<li>Load <a href='https://github.com/creationix/nvm'>nvm</a> in <code>.bashrc</code> or <code>.bash_profile</code></li>
+
+<li>Use <a href='https://github.com/creationix/nvm'>nvm</a> to install the latest version of <a href='http://nodejs.org/'>node</a></li>
+
+<li><a href='https://github.com/creationix/nvm'>nvm</a> installs <a href='http://npmjs.org/'>npm</a> in the latest <a href='http://nodejs.org/'>node</a></li>
+
+<li>Set latest version of node to be loaded by default</li>
+</ol>
+
+  </div>
+
+  
+</body>
+</html>

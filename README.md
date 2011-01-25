@@ -3,7 +3,7 @@ nodeready
 
 Inspired by [Joshua Frye]'s [Rails Ready], [nodeready] is a one-step installer for a fully-functioning [Node.js][node] development environment.
 
-    curl https://github.com/agnoster/nodeready/raw/master/nodeready.sh | sh
+    curl http://agnoster.github.com/nodeready/ | sh
 
 What does it install?
 ---------------------
@@ -15,14 +15,14 @@ What does it install?
 Caveats
 -------
 
-[nodeready] installs everything to `~/.nvm/`, owned by your used. Pro: you don't need to sudo. Con: maybe you wanted a system-wide version, wierdo.
+[nodeready] installs everything to `~/.nvm/`, owned by your user. Pro: you don't need to sudo. Con: maybe you wanted a system-wide version. Wierdo.
 
-Side-effects of [nodeready] may also include horked node installations, blurry vision, feelings of giddy elation, irresistable attractiveness, low birth weight, high birth weight, and triskeidekaphobia.
+Side-effects of [nodeready] may also include horked node installations, blurry vision, feelings of giddy elation, irresistable attractiveness to members of any and all desirable sexes, low birth weight, high birth weight, and triskaidekaphobia.
 
 Whoa, whoa, who died and made you God?
 --------------------------------------
 
-This is [opinionated software]. I like not having to faff around with sudo, being able to test against multiple language versions at the drop of a hat, and managing my package dependencies with a package.json file. So this script installs [node] using [nvm], so that you can install any version you want in the future.
+This is [opinionated software]. I like not having to faff around with sudo, being able to test against multiple language versions at the drop of a hat, and managing my package dependencies with a `package.json` file. So this script installs [node] using [nvm], so that you can install any version you want in the future.
 
 So what's the rundown?
 ----------------------
@@ -34,15 +34,12 @@ So what's the rundown?
 5. [nvm] installs [npm] in the latest [node]
 6. Set latest version of node to be loaded by default
 
-[Rails Ready]:		https://github.com/joshfng/railsready
-[node]:				http://nodejs.org/
-[nvm]:				https://github.com/creationix/nvm
-[npm]:				http://npmjs.org/
-[nodeready]:		https://github.com/agnoster/nodeready
-
+[Rails Ready]:      https://github.com/joshfng/railsready
+[node]:             http://nodejs.org/
+[nvm]:              https://github.com/creationix/nvm
+[npm]:              http://npmjs.org/
+[nodeready]:        https://github.com/agnoster/nodeready
 [opinionated software]: http://gettingreal.37signals.com/ch04_Make_Opinionated_Software.php
-	"37signals: Make Opinionated Software"
-
-[Joshua Frye]:		https://github.com/joshfng
-[Tim Caswell]:		https://github.com/creationix
-[Isaac Z. Schlueter]:	https://github.com/isaacs
+[Joshua Frye]:      https://github.com/joshfng
+[Tim Caswell]:      https://github.com/creationix
+[Isaac Z. Schlueter]:   https://github.com/isaacs
