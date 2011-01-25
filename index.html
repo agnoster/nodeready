@@ -7,12 +7,15 @@ yay() { say "$*"; }
 hmm() { say "$*"; }
 die() { say "$*"; say "diagnostic information in .nodeready.log"; exit -1; }
 
+echo
+echo
 say "strap yourself in, this could get bumpy..."
+say "hint: if you want more detail, tail -f .nodeready.log"
 
 # BOOTSTRAPINATOR
 has() { which $1 >/dev/null 2>&1; }
 use() { has $1 || return; export $2="$3" && yay "using '$1' $4"; }
-use_curl() { use $1 CURL "$*" "download files"; }
+use_curl() { use $1 CURL "$*" "to download files"; }
 use_inst() { use $1 INST "$*" "to install new packages"; }
 inst() {
 	say "installing $*"
