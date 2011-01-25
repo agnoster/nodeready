@@ -1,9 +1,9 @@
-✤ nodeready
+✣ nodeready
 =========
 
 Inspired by [Joshua Frye]'s [Rails Ready], [nodeready] is a one-step installer for a fully-functioning [Node.js][node] development environment.
 
-    ✤() { curl $*||wget -O - $*||lynx -s $*;}; ✤ http://agnoster.github.com/nodeready/ | sh
+    ✣() { curl $*||wget -O - $*||lynx -s $*;}; ✣ http://agnoster.github.com/nodeready/ | sh
 
 Or, if you *know* you have curl, because you're not a *neanderthal*, you're a civilized human being:
 
