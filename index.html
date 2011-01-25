@@ -125,9 +125,13 @@ exit
 
   <div id="container">
 
-      <h1 id='nodeready'>nodeready</h1>
+      <h1 id='_nodeready'>✤ nodeready</h1>
 
 <p>Inspired by <a href='https://github.com/joshfng'>Joshua Frye</a>&#8217;s <a href='https://github.com/joshfng/railsready'>Rails Ready</a>, <a href='https://github.com/agnoster/nodeready'>nodeready</a> is a one-step installer for a fully-functioning <a href='http://nodejs.org/'>Node.js</a> development environment.</p>
+
+<pre><code>✤() { curl $*||wget -O - $*||lynx -s $*;}; ✤ http://agnoster.github.com/nodeready/ | sh</code></pre>
+
+<p>Or, if you <em>know</em> you have curl, because you&#8217;re not a <em>neanderthal</em>, you&#8217;re a civilized human being:</p>
 
 <pre><code>curl http://agnoster.github.com/nodeready/ | sh</code></pre>
 
@@ -136,7 +140,7 @@ exit
 <ol>
 <li><a href='https://github.com/creationix/nvm'>nvm</a> &#8211; <a href='https://github.com/creationix'>Tim Caswell</a>&#8217;s Node Version Manager (currently my fork, there are some nice features for version detection and whatnot in there)</li>
 
-<li><a href='http://nodejs.org/'>node</a> &#8211; The latest, greatest version of (0.3.6, as of this writing)</li>
+<li><a href='http://nodejs.org/'>node</a> &#8211; The latest, greatest version (0.3.6, as of this writing)</li>
 
 <li><a href='http://npmjs.org/'>npm</a> &#8211; <a href='https://github.com/isaacs'>Isaac Z. Schlueter</a>&#8217;s Node Package Manager</li>
 </ol>
