@@ -2,9 +2,9 @@
 LOGFILE=".nodeready.log"
 
 say() { echo "# [nodeready] $*" | tee -a $LOGFILE; }
-yay() { say "\033[1;32m$*\033[0m"; }
-hmm() { say "\033[1;33m$*\033[0m"; }
-die() { say "\033[1;31m$*\033[0m"; say "diagnostic information in .nodeready.log"; exit -1; }
+yay() { say "$*"; }
+hmm() { say "$*"; }
+die() { say "$*"; say "diagnostic information in .nodeready.log"; exit -1; }
 
 say "strap yourself in, this could get bumpy..."
 
@@ -45,7 +45,7 @@ say "installing nvm"
 NVM_DIR="$HOME/.nvm"
 if mkdir "$NVM_DIR" >/dev/null 2>&1; then
 	$CURL - 'https://github.com/agnoster/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh"
-	grep "nvm.sh" ~/.bashrc ~/.bash_profile >>$LOGFILE 2>&1 || \
+	grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1 || \
 		(cat <<-NVMLOAD
 		[[ -s "\$HOME/.nvm/nvm.sh" ]] && source "\$HOME/.nvm/nvm.sh" # Load nvm into shell session
 		NVMLOAD
