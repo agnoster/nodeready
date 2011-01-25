@@ -63,15 +63,21 @@ type nvm 2>/dev/null | grep "function" >/dev/null || {
 if nvm sync; then
 	VERSION=`nvm version latest`
 else
-	VERSION="v0.3.6"
-	hmm "couldn't sync to get the latest version, so we're gonna to fall back to installing $VERSION"
+	VERSION=`$CURL - http://nodejs.org/ | grep -i -A 1 unstable | tail -n1 | sed -e 's/.*node-//' -e 's/.tar.gz.*//'`
+	hmm "couldn't use 'nvm sync' to get latest version"
+	if [ "$VERSION" = "" ]; then
+		VERSION="v0.3.6"
+		hmm "falling back to installing $VERSION"
+	else
+		yay "the website says latest is $VERSION, so we'll just trust them"
+	fi
 fi
 say "installing latest node ($VERSION)"
 say "(this could take a while, maybe get a coffee?)"
 nvm install $VERSION >/dev/null 2>&1 || die "crap, node install failed!"
 yay "node $VERSION installed"
 say "setting it as your default..."
-nvm alias default $VERSION
+nvm alias default $VERSION >/dev/null 2>&1 || (hmm "your version of nvm doesn't seem to support that..."; hmm "oh well, no biggie. just 'nvm use $VERSION' every time you want node")
 yay "all done!"
 say "to load node, just start a new shell or type:"
 echo "    source ~/.nvm/nvm.sh"
