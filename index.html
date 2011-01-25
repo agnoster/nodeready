@@ -95,30 +95,35 @@ exit
 <head>
     <meta charset="utf-8">
     <title>nodeready</title>
-    <link href='http://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Orbitron|Droid+Sans|Anonymous+Pro|Syncopate' rel='stylesheet' type='text/css'>
     <style type="text/css">
+html{width:100%; overflow-x:hidden;}
     body {
         margin-top: 1.0em;
         color: white;
-        font-family: "Helvetica Neue", "Helvetica", "Arial", "FreeSans";
+        font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     }
     #container {
       margin: 0 auto;
       width: 700px;
       color: black;
     }
-    h1,h2,h3 { font-family: Orbitron; }
-    h1,h2,h3,a { color: #da1557; }
-    h1 { font-size: 3.8em; margin-bottom: 3px; }
+    h2,h3 { font-family: Futura, "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
+    h1,h2,h3,a { color: #F00036; }
+    h2 { border-top: 5px solid #eee; padding-top: 1em; }
+    h1 { font-family: Syncopate, Orbitron; background: #F00036; color: white; }
+    h1 { font-size: 3.8em; margin: 5px -500px; padding: 15px 500px 10px; }
     h1 .small { font-size: 0.4em; }
     h1 a { text-decoration: none }
     h2 { font-size: 1.5em; }
     h3 { text-align: center; }
     .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
     .download { float: right; }
-        pre { background: #000; color: #fff; padding: 15px; margin: 0px -15px; }
+    code{font-family: "Anonymous Pro"; font-size: 14px; }
+    pre { background: #333; color: #eee; padding: 15px; margin: 0px -15px; -webkit-border-radius: 5px; overflow: auto; }
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
+    blockquote { font-size: 80%; color: #555; }
     </style>
     
 </head>
@@ -130,29 +135,66 @@ exit
 
       <h1 id='_nodeready'>✣ nodeready</h1>
 
-<p>Inspired by <a href='https://github.com/joshfng'>Joshua Frye</a>&#8217;s <a href='https://github.com/joshfng/railsready'>Rails Ready</a>, <a href='https://github.com/agnoster/nodeready'>nodeready</a> is a one-step installer for a fully-functioning <a href='http://nodejs.org/'>Node.js</a> development environment.</p>
+<p><strong><a href='http://agnoster.github.com/nodeready/'>nodeready</a></strong> is a <strong>one-step installer</strong> for a fully-functioning <strong><a href='http://nodejs.org/'>node.js</a> development environment</strong>.</p>
 
-<pre><code>L() { curl $*||wget -O - $*;}; L http://agnoster.github.com/nodeready/ | bash</code></pre>
+<pre><code>U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U||lynx -source $U)|bash</code></pre>
 
-<p>Or, if you <em>know</em> you have curl, because you&#8217;re not a <em>neanderthal</em>, you&#8217;re a civilized human being:</p>
-
-<pre><code>curl http://agnoster.github.com/nodeready/ | bash</code></pre>
+<p>Just copy-and-paste that crazy little snippet into your terminal, and watch the magic begin!</p>
 
 <h2 id='what_does_it_install'>What does it install?</h2>
 
 <ol>
-<li><a href='https://github.com/creationix/nvm'>nvm</a> &#8211; <a href='https://github.com/creationix'>Tim Caswell</a>&#8217;s Node Version Manager (currently my fork, there are some nice features for version detection and whatnot in there)</li>
+<li><a href='https://github.com/creationix/nvm'>nvm</a> &#8211; <a href='https://github.com/creationix'>Tim Caswell</a>&#8217;s Node Version Manager</li>
 
 <li><a href='http://nodejs.org/'>node</a> &#8211; The latest, greatest version (0.3.6, as of this writing)</li>
 
 <li><a href='http://npmjs.org/'>npm</a> &#8211; <a href='https://github.com/isaacs'>Isaac Z. Schlueter</a>&#8217;s Node Package Manager</li>
 </ol>
 
+<blockquote>
+<p>NB: <a href='http://agnoster.github.com/nodeready/'>nodeready</a> currently uses <a href='https://github.com/agnoster/nvm'>my fork</a> of <a href='https://github.com/creationix/nvm'>nvm</a>, as there are some nice features for version detection and whatnot in there. These features have been deemed unsafe for mass consumption as of yet, though, so&#8230; you might want to put on lead underpants before using it.</p>
+</blockquote>
+
+<h2 id='and_then'>And then?</h2>
+
+<p>Install packages with <a href='http://npmjs.org/'>npm</a>!</p>
+
+<pre><code>$ npm ls installed
+npm info it worked if it ends with ok
+npm info using npm@0.2.15
+npm info using node@v0.3.6
+npm@0.2.15                A package manager for node    =isaacs active installed remote package manager modules install package.json
+npm ok
+$ npm install zappa #amirite?
+...</code></pre>
+
+<p>Use <a href='https://github.com/creationix/nvm'>nvm</a> to get the latest node!</p>
+
+<pre><code>$ nvm sync
+# syncing with nodejs.org... done.
+NEW latest: v0.3.7
+$ nvm install latest
+$ nvm alias default v0.3.7</code></pre>
+
+<p>And much, much more! Use <code>nvm help</code> and <code>npm help</code>, they are your friend. Remember: <a href='https://github.com/creationix/nvm'>nvm</a> manages your installs of <a href='http://nodejs.org/'>node</a>, and <a href='http://npmjs.org/'>npm</a> manages the packages.</p>
+
 <h2 id='caveats'>Caveats</h2>
 
-<p><a href='https://github.com/agnoster/nodeready'>nodeready</a> installs everything to <code>~/.nvm/</code>, owned by your user. Pro: you don&#8217;t need to sudo. Con: maybe you wanted a system-wide version. Wierdo.</p>
+<p><a href='http://agnoster.github.com/nodeready/'>nodeready</a> installs everything to <code>~/.nvm/</code>, owned by your user.</p>
 
-<p>Side-effects of <a href='https://github.com/agnoster/nodeready'>nodeready</a> may also include horked node installations, blurry vision, feelings of giddy elation, irresistable attractiveness to members of any and all desirable sexes, low birth weight, high birth weight, and triskaidekaphobia.</p>
+<ul>
+<li><strong>Pro</strong>: you don&#8217;t need to sudo.</li>
+
+<li><strong>Con</strong>: maybe you wanted a system-wide version. Wierdo.</li>
+</ul>
+
+<blockquote>
+<p><a href='http://agnoster.github.com/nodeready/'>nodeready</a> is highly experimental, and comes with no guarantee, express or implied, that your use of it won&#8217;t result in adverse effects up to and including the end of life as we know it.</p>
+</blockquote>
+
+<blockquote>
+<p>Side-effects of <a href='http://agnoster.github.com/nodeready/'>nodeready</a> may also include horked node installations, blurry vision, feelings of giddy elation, irresistable attractiveness to members of any and all desirable sexes, low birth weight, high birth weight, and triskaidekaphobia.</p>
+</blockquote>
 
 <h2 id='whoa_whoa_who_died_and_made_you_god'>Whoa, whoa, who died and made you God?</h2>
 
@@ -173,6 +215,22 @@ exit
 
 <li>Set latest version of node to be loaded by default</li>
 </ol>
+
+<h2 id='it_broke'>It broke</h2>
+
+<p>Comrade, you should know that <a href='http://agnoster.github.com/nodeready/'>nodeready</a> is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from <code>.nodeready.log</code>, preferably on the <a href='https://github.com/agnoster/nodeready/issues'>issues</a> page.</p>
+
+<h2 id='i_meant_my_wifes_water_broke'>I meant, my wife&#8217;s water broke</h2>
+
+<p>Oh! That&#8217;s different. You&#8217;re lucky that <a href='http://agnoster.github.com/nodeready/'>nodeready</a> is also a trained obstetrician.</p>
+
+<h2 id='thanks'>Thanks</h2>
+
+<p>To <a href='https://github.com/joshfng'>Joshua Frye</a>, creator of <a href='https://github.com/joshfng/railsready'>Rails Ready</a> and, unless I&#8217;m misremembering, the <a href='http://en.wikipedia.org/wiki/Spleen'>spleen</a>. Both were great inspirations for <a href='http://agnoster.github.com/nodeready/'>nodeready</a>.</p>
+
+<h2 id='tinkering'>Tinkering</h2>
+
+<p>Please do. <a href='https://github.com/agnoster/nodeready/'>Fork away!</a> Don&#8217;t be evil, or at least, not in a bad way. And whenever possible, make html pages that are also shell scripts, or shell commands that are also tweets.</p>
 
   </div>
 
