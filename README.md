@@ -8,7 +8,7 @@ Inspired by [Joshua Frye]'s [Rails Ready], [nodeready] is a one-step installer f
 What does it install?
 ---------------------
 
-1. [nvm] -- [Tim Caswell]'s Node Version Manager
+1. [nvm] -- [Tim Caswell]'s Node Version Manager (currently my fork, there are some nice features for version detection and whatnot in there)
 2. [node] -- The latest, greatest version of (0.3.6, as of this writing)
 3. [npm] -- [Isaac Z. Schlueter]'s Node Package Manager
 
