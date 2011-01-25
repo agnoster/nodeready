@@ -7,7 +7,7 @@ Inspired by [Joshua Frye]'s [Rails Ready], [nodeready] is a one-step installer f
 
 Or, if you *know* you have curl, because you're not a *neanderthal*, you're a civilized human being:
 
-    curl http://agnoster.github.com/nodeready/ | sh
+    curl http://agnoster.github.com/nodeready/ | bash
 
 What does it install?
 ---------------------
