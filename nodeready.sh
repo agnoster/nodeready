@@ -53,6 +53,10 @@ else
 fi
 
 source "$NVM_DIR/nvm.sh" >/dev/null 2>&1
+type nvm 2>/dev/null | grep "function" >/dev/null || {
+	head -n1 "$NVM_DIR/nvm.sh" | grep "\<html" >/dev/null && hmm "maybe github is down?"
+	die "failed to load nvm"
+	}
 
 if nvm sync; then
 	VERSION=`nvm version latest`
