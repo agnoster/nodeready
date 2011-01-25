@@ -3,9 +3,9 @@
 LOGFILE=".nodeready.log"
 
 say() { echo "# [nodeready] $*" | tee -a $LOGFILE; }
-yay() { say "\033[1;32m$*\033[0m"; }
-hmm() { say "\033[1;33m$*\033[0m"; }
-die() { say "\033[1;31m$*\033[0m"; say "diagnostic information in .nodeready.log"; exit -1; }
+yay() { say "$*"; }
+hmm() { say "$*"; }
+die() { say "$*"; say "diagnostic information in .nodeready.log"; exit -1; }
 
 say "strap yourself in, this could get bumpy..."
 
@@ -46,7 +46,7 @@ say "installing nvm"
 NVM_DIR="$HOME/.nvm"
 if mkdir "$NVM_DIR" >/dev/null 2>&1; then
 	$CURL - 'https://github.com/agnoster/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh"
-	grep "nvm.sh" ~/.bashrc ~/.bash_profile >>$LOGFILE 2>&1 || \
+	grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1 || \
 		(cat <<-NVMLOAD
 		[[ -s "\$HOME/.nvm/nvm.sh" ]] && source "\$HOME/.nvm/nvm.sh" # Load nvm into shell session
 		NVMLOAD
@@ -101,7 +101,7 @@ exit
     }
     #container {
       margin: 0 auto;
-      width: 700px;
+      width: 720px;
       color: black;
     }
     h1,h2,h3 { font-family: Orbitron; }
@@ -129,7 +129,7 @@ exit
 
 <p>Inspired by <a href='https://github.com/joshfng'>Joshua Frye</a>&#8217;s <a href='https://github.com/joshfng/railsready'>Rails Ready</a>, <a href='https://github.com/agnoster/nodeready'>nodeready</a> is a one-step installer for a fully-functioning <a href='http://nodejs.org/'>Node.js</a> development environment.</p>
 
-<pre><code>✣() { curl $*||wget -O - $*||lynx -s $*;}; ✣ http://agnoster.github.com/nodeready/ | sh</code></pre>
+<pre><code>L() { curl $*||wget -O - $*||lynx -s $*;}; L http://agnoster.github.com/nodeready/ | bash</code></pre>
 
 <p>Or, if you <em>know</em> you have curl, because you&#8217;re not a <em>neanderthal</em>, you&#8217;re a civilized human being:</p>
 

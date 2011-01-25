@@ -16,7 +16,7 @@ exit
     }
     #container {
       margin: 0 auto;
-      width: 700px;
+      width: 720px;
       color: black;
     }
     h1,h2,h3 { font-family: Orbitron; }
