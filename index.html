@@ -5,10 +5,35 @@ LOGFILE=".nodeready.log"
 say() { echo "# [nodeready] $*" | tee -a $LOGFILE; }
 yay() { say "$*"; }
 hmm() { say "$*"; }
-die() { say "$*"; say "diagnostic information in .nodeready.log"; exit -1; }
+die() { say "$*"; diagnostics >>$LOGFILE; say "diagnostic information in .nodeready.log"; exit -1; }
+
+diagdo () {
+	echo '$' $*
+	$* 2>&1
+	echo "= $?"
+}
+
+diagnostics () {
+	echo "########## BEGIN DIAGNOSTICS ################"
+	diagdo "date"
+	diagdo "uname -a"
+	diagdo "which curl wget lynx"
+	diagdo "which brew apt-get yum"
+	diagdo "which node"
+	echo "$ echo \$BASH_VERSION"
+	echo $BASH_VERSION
+	echo "########## BEGIN env ########################"
+	env
+	echo "########## BEGIN ~/nvm ######################"
+	ls -al $HOME/.nvm
+	echo "########## BEGIN nvm.sh #####################"
+	cat $HOME/.nvm/nvm.sh
+	echo "########## END DIAGNOSTICS ##################"
+}
 
 echo
 echo
+diagnostics >>$LOGFILE
 say "strap yourself in, this could get bumpy..."
 say "hint: if you want more detail, tail -f .nodeready.log"
 
@@ -124,12 +149,14 @@ html{width:100%; overflow-x:hidden;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
     blockquote { font-size: 80%; color: #555; }
+    .twitter-share-button { position: fixed; top: 70px; right: 100px; }
     </style>
     
 </head>
 
 <body>
   <a href="http://github.com/agnoster/nodeready"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://agnoster.github.com/nodeready/" data-text="U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U)|bash #installNodeJSinoneline" data-count="vertical" data-via="nodeready">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
   <div id="container">
 
@@ -238,7 +265,7 @@ $ nvm alias default v0.3.7</code></pre>
 
 <h2 id='it_broke'>It broke</h2>
 
-<p>Comrade, you should know that <a href='http://agnoster.github.com/nodeready/'>nodeready</a> is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from <code>.nodeready.log</code>, preferably on the <a href='https://github.com/agnoster/nodeready/issues'>issues</a> page. Or email the log to <a href='mailto:nodeready@agnoster.net'>nodeready@agnoster.net</a>.</p>
+<p>Comrade, you should know that <a href='http://agnoster.github.com/nodeready/'>nodeready</a> is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from <code>.nodeready.log</code>, preferably on the <a href='https://github.com/agnoster/nodeready/issues'>issues</a> page. Or email the log to <a href='mailto:nodeready@agnoster.net'>nodeready@agnoster.net</a>. Or if you just want to vent you call yell <a href='http://twitter.com/nodeready'>@nodeready</a> on twitter.</p>
 
 <h2 id='i_meant_my_wifes_water_broke'>I meant, my wife&#8217;s water broke</h2>
 

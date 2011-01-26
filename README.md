@@ -73,7 +73,7 @@ Caveats
 Whoa, whoa, who died and made you God?
 --------------------------------------
 
-This is [opinionated software]. I like not having to faff around with sudo, being able to test against multiple language versions at the drop of a hat, and managing my package dependencies with a `package.json` file. So this script installs [node] using [nvm], so that you can install any version you want in the future.
+This is [opinionated software][opinionated]. I like not having to faff around with sudo, being able to test against multiple language versions at the drop of a hat, and managing my package dependencies with a `package.json` file. So this script installs [node] using [nvm], so that you can install any version you want in the future.
 
 So what exactly does it do?
 ---------------------------
@@ -88,7 +88,7 @@ So what exactly does it do?
 It broke
 --------
 
-Comrade, you should know that [nodeready] is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from `.nodeready.log`, preferably on the [issues] page. Or email the log to [nodeready@agnoster.net][email].
+Comrade, you should know that [nodeready] is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from `.nodeready.log`, preferably on the [issues] page. Or email the log to [nodeready@agnoster.net][email]. Or if you just want to vent you call yell [@nodeready][twitter] on twitter.
 
 I meant, my wife's water broke
 ------------------------------
@@ -111,7 +111,7 @@ Please do. [Fork away!][github/nodeready] Don't be evil, or at least, not in a b
 [agnoster/nvm]:     https://github.com/agnoster/nvm
 [npm]:              http://npmjs.org/
 [nodeready]:        http://agnoster.github.com/nodeready/
-[opinionated software]: http://gettingreal.37signals.com/ch04_Make_Opinionated_Software.php
+[opinionated]:      http://gettingreal.37signals.com/ch04_Make_Opinionated_Software.php
 [Joshua Frye]:      https://github.com/joshfng
 [Tim Caswell]:      https://github.com/creationix
 [Isaac Z. Schlueter]:   https://github.com/isaacs
@@ -119,4 +119,5 @@ Please do. [Fork away!][github/nodeready] Don't be evil, or at least, not in a b
 [github/nodeready]: https://github.com/agnoster/nodeready/
 [spleen]:           http://en.wikipedia.org/wiki/Spleen
 [nvm.sh]:           https://github.com/agnoster/nvm/blob/master/nvm.sh
-[email]:          mailto:nodeready@agnoster.net
+[email]:            mailto:nodeready@agnoster.net
+[twitter]:          http://twitter.com/nodeready
