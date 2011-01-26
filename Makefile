@@ -9,3 +9,7 @@ rebase:	index.html
 
 index.html:	README.md nodeready.sh template.php
 	php template.php > index.html
+
+test: 
+	rm .nodeready.log
+	cat nodeready.sh | bash

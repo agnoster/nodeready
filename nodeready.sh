@@ -4,10 +4,35 @@ LOGFILE=".nodeready.log"
 say() { echo "# [nodeready] $*" | tee -a $LOGFILE; }
 yay() { say "$*"; }
 hmm() { say "$*"; }
-die() { say "$*"; say "diagnostic information in .nodeready.log"; exit -1; }
+die() { say "$*"; diagnostics >>$LOGFILE; say "diagnostic information in .nodeready.log"; exit -1; }
+
+diagdo () {
+	echo '$' $*
+	$* 2>&1
+	echo "= $?"
+}
+
+diagnostics () {
+	echo "########## BEGIN DIAGNOSTICS ################"
+	diagdo "date"
+	diagdo "uname -a"
+	diagdo "which curl wget lynx"
+	diagdo "which brew apt-get yum"
+	diagdo "which node"
+	echo "$ echo \$BASH_VERSION"
+	echo $BASH_VERSION
+	echo "########## BEGIN env ########################"
+	env
+	echo "########## BEGIN ~/nvm ######################"
+	ls -al $HOME/.nvm
+	echo "########## BEGIN nvm.sh #####################"
+	cat $HOME/.nvm/nvm.sh
+	echo "########## END DIAGNOSTICS ##################"
+}
 
 echo
 echo
+diagnostics >>$LOGFILE
 say "strap yourself in, this could get bumpy..."
 say "hint: if you want more detail, tail -f .nodeready.log"
 

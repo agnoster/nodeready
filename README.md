@@ -5,7 +5,9 @@
 
     U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U||lynx -source $U)|bash
 
-Just copy-and-paste that crazy little snippet into your terminal, and watch the magic begin!
+Just copy-and-paste that crazy little snippet into your terminal, and watch the magic\* begin!
+
+> \* Magic only available on POSIX-compliant systems. If you have to ask: Yes, it works on Macs, and no, it doesn't work on Windows. If you try running this on Windows, the best you can hope for is herpes.
 
 What does it install?
 ---------------------
@@ -15,6 +17,19 @@ What does it install?
 3. [npm] -- [Isaac Z. Schlueter]'s Node Package Manager
 
 > NB: [nodeready] currently uses [my fork][agnoster/nvm] of [nvm], as there are some nice features for version detection and whatnot in there. These features have been deemed unsafe for mass consumption as of yet, though, so... you might want to put on lead underpants before using it.
+
+And then?
+---------
+
+Run [node]!
+
+    $ node
+    > process.version
+    'v0.3.6'
+    > function fib(n){return (n>2)?(fib(n-1)+fib(n-2)):n;}; fib(10);
+    89
+
+> I can't believe how evented that is!
 
 And then?
 ---------
@@ -29,6 +44,9 @@ Install packages with [npm]!
     npm ok
     $ npm install zappa #amirite?
     ...
+
+And then and then and then and then?
+------------------------------------
 
 Use [nvm] to get the latest node!
 
@@ -57,11 +75,11 @@ Whoa, whoa, who died and made you God?
 
 This is [opinionated software]. I like not having to faff around with sudo, being able to test against multiple language versions at the drop of a hat, and managing my package dependencies with a `package.json` file. So this script installs [node] using [nvm], so that you can install any version you want in the future.
 
-So what's the rundown?
-----------------------
+So what exactly does it do?
+---------------------------
 
 1. Create `~/.nvm`
-2. Download [nvm].sh to `~/.nvm`
+2. Download [nvm.sh] to `~/.nvm`
 3. Load [nvm] in `.bashrc` or `.bash_profile`
 4. Use [nvm] to install the latest version of [node]
 5. [nvm] installs [npm] in the latest [node]
@@ -70,7 +88,7 @@ So what's the rundown?
 It broke
 --------
 
-Comrade, you should know that [nodeready] is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from `.nodeready.log`, preferably on the [issues] page.
+Comrade, you should know that [nodeready] is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from `.nodeready.log`, preferably on the [issues] page. Or email the log to [nodeready@agnoster.net][email].
 
 I meant, my wife's water broke
 ------------------------------
@@ -100,3 +118,5 @@ Please do. [Fork away!][github/nodeready] Don't be evil, or at least, not in a b
 [issues]:           https://github.com/agnoster/nodeready/issues
 [github/nodeready]: https://github.com/agnoster/nodeready/
 [spleen]:           http://en.wikipedia.org/wiki/Spleen
+[nvm.sh]:           https://github.com/agnoster/nvm/blob/master/nvm.sh
+[email]:          mailto:nodeready@agnoster.net

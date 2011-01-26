@@ -22,9 +22,9 @@ html{width:100%; overflow-x:hidden;}
     }
     h2,h3 { font-family: Futura, "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
     h1,h2,h3,a { color: #F00036; }
-    h2 { border-top: 5px solid #eee; padding-top: 1em; }
+    h2 { border-top: 5px solid #eee; padding-top: 1em; margin-top: 1em; }
     h1 { font-family: Syncopate, Orbitron; background: #F00036; color: white; }
-    h1 { font-size: 3.8em; margin: 5px -500px; padding: 15px 500px 10px; }
+    h1 { font-size: 3.8em; margin: 20px -500px; padding: 15px 500px 10px; }
     h1 .small { font-size: 0.4em; }
     h1 a { text-decoration: none }
     h2 { font-size: 1.5em; }

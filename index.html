@@ -110,9 +110,9 @@ html{width:100%; overflow-x:hidden;}
     }
     h2,h3 { font-family: Futura, "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
     h1,h2,h3,a { color: #F00036; }
-    h2 { border-top: 5px solid #eee; padding-top: 1em; }
+    h2 { border-top: 5px solid #eee; padding-top: 1em; margin-top: 1em; }
     h1 { font-family: Syncopate, Orbitron; background: #F00036; color: white; }
-    h1 { font-size: 3.8em; margin: 5px -500px; padding: 15px 500px 10px; }
+    h1 { font-size: 3.8em; margin: 20px -500px; padding: 15px 500px 10px; }
     h1 .small { font-size: 0.4em; }
     h1 a { text-decoration: none }
     h2 { font-size: 1.5em; }
@@ -139,7 +139,11 @@ html{width:100%; overflow-x:hidden;}
 
 <pre><code>U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U||lynx -source $U)|bash</code></pre>
 
-<p>Just copy-and-paste that crazy little snippet into your terminal, and watch the magic begin!</p>
+<p>Just copy-and-paste that crazy little snippet into your terminal, and watch the magic* begin!</p>
+
+<blockquote>
+<p>* Magic only available on POSIX-compliant systems. If you have to ask: Yes, it works on Macs, and no, it doesn&#8217;t work on Windows. If you try running this on Windows, the best you can hope for is herpes.</p>
+</blockquote>
 
 <h2 id='what_does_it_install'>What does it install?</h2>
 
@@ -157,6 +161,20 @@ html{width:100%; overflow-x:hidden;}
 
 <h2 id='and_then'>And then?</h2>
 
+<p>Run <a href='http://nodejs.org/'>node</a>!</p>
+
+<pre><code>$ node
+&gt; process.version
+&#39;v0.3.6&#39;
+&gt; function fib(n){return (n&gt;2)?(fib(n-1)+fib(n-2)):n;}; fib(10);
+89</code></pre>
+
+<blockquote>
+<p>I can&#8217;t believe how evented that is!</p>
+</blockquote>
+
+<h2 id='and_then'>And then?</h2>
+
 <p>Install packages with <a href='http://npmjs.org/'>npm</a>!</p>
 
 <pre><code>$ npm ls installed
@@ -167,6 +185,8 @@ npm@0.2.15                A package manager for node    =isaacs active installed
 npm ok
 $ npm install zappa #amirite?
 ...</code></pre>
+
+<h2 id='and_then_and_then_and_then_and_then'>And then and then and then and then?</h2>
 
 <p>Use <a href='https://github.com/creationix/nvm'>nvm</a> to get the latest node!</p>
 
@@ -200,12 +220,12 @@ $ nvm alias default v0.3.7</code></pre>
 
 <p>This is <a href='http://gettingreal.37signals.com/ch04_Make_Opinionated_Software.php'>opinionated software</a>. I like not having to faff around with sudo, being able to test against multiple language versions at the drop of a hat, and managing my package dependencies with a <code>package.json</code> file. So this script installs <a href='http://nodejs.org/'>node</a> using <a href='https://github.com/creationix/nvm'>nvm</a>, so that you can install any version you want in the future.</p>
 
-<h2 id='so_whats_the_rundown'>So what&#8217;s the rundown?</h2>
+<h2 id='so_what_exactly_does_it_do'>So what exactly does it do?</h2>
 
 <ol>
 <li>Create <code>~/.nvm</code></li>
 
-<li>Download <a href='https://github.com/creationix/nvm'>nvm</a>.sh to <code>~/.nvm</code></li>
+<li>Download <a href='https://github.com/agnoster/nvm/blob/master/nvm.sh'>nvm.sh</a> to <code>~/.nvm</code></li>
 
 <li>Load <a href='https://github.com/creationix/nvm'>nvm</a> in <code>.bashrc</code> or <code>.bash_profile</code></li>
 
@@ -218,7 +238,7 @@ $ nvm alias default v0.3.7</code></pre>
 
 <h2 id='it_broke'>It broke</h2>
 
-<p>Comrade, you should know that <a href='http://agnoster.github.com/nodeready/'>nodeready</a> is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from <code>.nodeready.log</code>, preferably on the <a href='https://github.com/agnoster/nodeready/issues'>issues</a> page.</p>
+<p>Comrade, you should know that <a href='http://agnoster.github.com/nodeready/'>nodeready</a> is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from <code>.nodeready.log</code>, preferably on the <a href='https://github.com/agnoster/nodeready/issues'>issues</a> page. Or email the log to <a href='mailto:nodeready@agnoster.net'>nodeready@agnoster.net</a>.</p>
 
 <h2 id='i_meant_my_wifes_water_broke'>I meant, my wife&#8217;s water broke</h2>
 
