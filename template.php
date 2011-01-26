@@ -43,7 +43,7 @@ html{width:100%; overflow-x:hidden;}
 
 <body>
   <a href="http://github.com/agnoster/nodeready"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
-<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://agnoster.github.com/nodeready/" data-text="U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U)|bash #installNodeJSinoneline" data-count="vertical" data-via="nodeready">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://agnoster.github.com/nodeready/" data-text="U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U)|bash #onelineinstall for @nodejs" data-count="vertical" data-via="nodeready">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
   <div id="container">
 
