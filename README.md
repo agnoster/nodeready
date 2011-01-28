@@ -64,7 +64,7 @@ Caveats
 [nodeready] installs everything to `~/.nvm/`, owned by your user.
 
 - **Pro**: you don't need to sudo.
-- **Con**: maybe you wanted a system-wide version. Wierdo.
+- **Con**: maybe you wanted a system-wide version. Weirdo.
 
 > [nodeready] is highly experimental, and comes with no guarantee, express or implied, that your use of it won't result in adverse effects up to and including the end of life as we know it.
 
