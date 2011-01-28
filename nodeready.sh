@@ -123,4 +123,8 @@ yay "all done!"
 say "to load node, just start a new shell or type:"
 echo "    source ~/.nvm/nvm.sh"
 
-say "Thank you for using nodeready. If everything seemed to work, I'd appreciate a tweet @nodeready or an email to nodeready@agnoster.net letting me know what system you installed it on."
+echo
+say "Thank you for using nodeready, still in testing. If everything seemed to work,"
+say "I'd appreciate a tweet @nodeready or an email to nodeready@agnoster.net"
+say "letting me know what system you installed it on."
+echo
