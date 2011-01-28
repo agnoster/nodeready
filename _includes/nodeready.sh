@@ -12,6 +12,11 @@ diagdo () {
 	echo "= $?"
 }
 
+run () {
+	echo '$' $* >> $LOGFILE
+	$* >> $LOGFILE 2>&1
+}
+
 diagnostics () {
 	echo "########## BEGIN DIAGNOSTICS ################"
 	diagdo "date"
@@ -41,26 +46,26 @@ say "hint: if you want more detail, tail -f .nodeready.log"
 has() { which $1 >/dev/null 2>&1; }
 use() { has $1 || return; export $2="$3" && yay "using '$1' $4"; }
 use_curl() { use $1 CURL "$*" "to download files"; }
-use_inst() { use $1 INST "$*" "to install new packages"; }
-inst() {
-	say "installing $*"
-	$INST $* >>$LOGFILE 2>&1
+
+install_buildtools() {
+	test `uname` = "Darwin" && die "install XCode first: http://developer.apple.com/technologies/xcode.html"
+	if has apt-get; then
+		say "We have to install build tools to compile node, which requires sudo:"
+		run sudo apt-get -y install build-essential libssl-dev || die "could not install build tools"
+	elif has yum; then
+		say "We have to install build tools to compile node, which requires sudo:"
+		run "(sudo yum groupinstall 'Development Tools' && sudo yum -y install openssl-devel)" || die "could not install build tools"
+	else
+		hmm "Couldn't find apt-get or yum to install build tools."
+		hmm "You'll need g++, make, libssl-dev or their equivalents for your plaftform before we can continue"
+		die "cannot continue without build tools"
+	fi
 }
 
-# Let's see what we have...
-use_inst apt-get -y install || \
-use_inst brew install || \
-use_inst yum -y install || \
-hmm "no package manager found, attempting to continue without one"
-
-if has gcc; then
+if has gcc make; then
 	say "using 'gcc' to compile"
 else
-	hmm "we need gcc in order to proceed"
-	test `uname` = "Darwin" && die "install XCode first: http://developer.apple.com/technologies/xcode.html"
-	hmm "attempting to install gcc with $INST"
-	inst gcc || die "failed to install gcc :-("
-	yay "successfully installed gcc"
+	install_buildtools
 fi
 
 # Well, we need a way to download files for sure
