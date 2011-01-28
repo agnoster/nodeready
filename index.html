@@ -20,6 +20,7 @@ diagnostics () {
 	diagdo "which curl wget lynx"
 	diagdo "which brew apt-get yum"
 	diagdo "which node"
+	diagdo "which gcc"
 	echo "$ echo \$BASH_VERSION"
 	echo $BASH_VERSION
 	echo "########## BEGIN env ########################"
@@ -44,7 +45,7 @@ use_curl() { use $1 CURL "$*" "to download files"; }
 use_inst() { use $1 INST "$*" "to install new packages"; }
 inst() {
 	say "installing $*"
-	$INST $* >>$LOGFILE 2>&1 && yay "installed successfully" || hmm "install failed"
+	$INST $* >>$LOGFILE 2>&1
 }
 
 # Let's see what we have...
@@ -52,6 +53,16 @@ use_inst apt-get -y install || \
 use_inst brew install || \
 use_inst yum -y install || \
 hmm "no package manager found, attempting to continue without one"
+
+if has gcc; then
+	say "using 'gcc' to compile"
+else
+	hmm "we need gcc in order to proceed"
+	test `uname` = "Darwin" && die "install XCode first: http://developer.apple.com/technologies/xcode.html"
+	hmm "attempting to install gcc with $INST"
+	inst gcc || die "failed to install gcc :-("
+	yay "successfully installed gcc"
+fi
 
 # Well, we need a way to download files for sure
 if has curl; then
@@ -113,6 +124,7 @@ yay "all done!"
 say "to load node, just start a new shell or type:"
 echo "    source ~/.nvm/nvm.sh"
 
+say "Thank you for using nodeready. If everything seemed to work, I'd appreciate a tweet @nodeready or an email to nodeready@agnoster.net letting me know what system you installed it on."
 exit
 -->
 <!DOCTYPE html>
