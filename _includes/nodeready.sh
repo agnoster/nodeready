@@ -30,9 +30,9 @@ diagnostics () {
 	echo "########## BEGIN env ########################"
 	env
 	echo "########## BEGIN ~/nvm ######################"
-	ls -al $HOME/.nvm
+	ls -al $HOME/.nvm 2>&1
 	echo "########## BEGIN nvm.sh #####################"
-	cat $HOME/.nvm/nvm.sh
+	cat $HOME/.nvm/nvm.sh 2>&1
 	echo "########## END DIAGNOSTICS ##################"
 }
 
@@ -70,15 +70,15 @@ fi
 
 # Well, we need a way to download files for sure
 if has curl; then
-	use_curl curl -s -C - -o
+	use_curl curl -C - -o
 elif has wget; then
-	use_curl wget -q -c -O
+	use_curl wget --no-check-certificate -c -O
 else
 	hmm "did not find curl or wget, trying to install curl..."
 	if inst curl; then
-		use_curl curl -s -C - -o
+		use_curl curl -C - -o
 	elif inst wget; then
-		use_curl wget -q -c -O
+		use_curl wget --no-check-certificate -c -O
 	else
 		die "cannot proceed without either curl or wget!"
 	fi
@@ -88,7 +88,7 @@ fi
 say "installing nvm"
 NVM_DIR="$HOME/.nvm"
 if mkdir "$NVM_DIR" >/dev/null 2>&1; then
-	$CURL - 'https://github.com/agnoster/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh"
+	$CURL - 'https://github.com/agnoster/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh" 2>>$LOGFILE || die "could not download nvm.sh"
 	grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1 || \
 		(cat <<-NVMLOAD
 		[[ -s "\$HOME/.nvm/nvm.sh" ]] && source "\$HOME/.nvm/nvm.sh" # Load nvm into shell session
@@ -109,7 +109,7 @@ type nvm 2>&1 | grep "function" >>$LOGFILE 2>&1 || {
 if nvm sync; then
 	VERSION=`nvm version latest`
 else
-	VERSION=`$CURL - http://nodejs.org/ | grep -i -A 1 unstable | tail -n1 | sed -e 's/.*node-//' -e 's/.tar.gz.*//'`
+	VERSION=`$CURL - http://nodejs.org/ 2>>$LOGFILE | grep -i -A 1 unstable | tail -n1 | sed -e 's/.*node-//' -e 's/.tar.gz.*//'`
 	hmm "couldn't use 'nvm sync' to get latest version"
 	if [ "$VERSION" = "" ]; then
 		VERSION="v0.3.6"
