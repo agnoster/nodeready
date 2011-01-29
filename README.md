@@ -88,7 +88,7 @@ So what exactly does it do?
 It broke
 --------
 
-Comrade, you should know that [nodeready] is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from `.nodeready.log`, preferably on the [issues] page. Or email the log to [nodeready@agnoster.net][email]. Or if you just want to vent you call yell [@nodeready][twitter] on twitter.
+Comrade, you should know that [nodeready] is infallible. But before you are escorted by our friendly agents to your new home in the JSON mines, please share the output from `.nodeready.log`, preferably on the [issues] page. Or email the log to [nodeready@agnoster.net][email]. Or if you just want to vent you can yell [@nodeready][twitter] on twitter.
 
 I meant, my wife's water broke
 ------------------------------
