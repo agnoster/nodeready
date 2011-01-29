@@ -29,7 +29,7 @@ diagnostics () {
 	echo $BASH_VERSION
 	echo "########## BEGIN env ########################"
 	env
-	echo "########## BEGIN ~/nvm ######################"
+	echo "########## BEGIN ~/.nvm #####################"
 	ls -al $HOME/.nvm 2>&1
 	echo "########## BEGIN nvm.sh #####################"
 	cat $HOME/.nvm/nvm.sh 2>&1
@@ -87,13 +87,20 @@ fi
 # Start with nvm
 say "installing nvm"
 NVM_DIR="$HOME/.nvm"
-if mkdir "$NVM_DIR" >/dev/null 2>&1; then
+
+run mkdir -p "$NVM_DIR"
+if [ ! -s "$NVM_DIR/nvm.sh" ]; then
 	$CURL - 'https://github.com/agnoster/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh" 2>>$LOGFILE || die "could not download nvm.sh"
-	grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1 || \
+	if ! grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1; then
+		BK=".bash_profile.$RANDOM"
+		say "backing up ~/.bash_profile to ~/$BK"
+		run cp ~/.bash_profile ~/$BK || die "could not copy... to your own home dir. huh."
 		(cat <<-NVMLOAD
 		[[ -s "\$HOME/.nvm/nvm.sh" ]] && source "\$HOME/.nvm/nvm.sh" # Load nvm into shell session
 		NVMLOAD
-) | cat >> ~/.bash_profile
+		) | cat >> ~/.bash_profile
+		yay "loaded nvm in ~/.bash_profile"
+	fi
 else
 	hmm "nvm seems to already be installed - if you want to re-install, run the following and try again:"
 	echo "    rm -rf ~/.nvm"
