@@ -8,8 +8,13 @@ exit
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
     <meta property="og:title" content="{{ page.title }}"/> 
-    <meta property="og:type" content="website"/> 
+    <meta property="og:type" content="product"/> 
+    <meta property="og:url" content="http://agnoster.github.com/nodeready/"/>
     <meta property="og:image" content="http://agnoster.github.com/nodeready/logo.png"/> 
+    <meta property="og:site_name" content="Nodeready"/> 
+    <meta property="fb:admins" content="2900100"/> 
+    <meta property="og:email" content="nodeready@agnoster.net"/>
+    <meta property="og:description" content="{{ page.description }}"/> 
     <link rel="icon" href="./favicon.png" type="image/png">
     <link rel="shortcut icon" href="./favicon.png" type="image/png">
     <meta name="description" content="{{ page.description }}"/>
@@ -25,7 +30,7 @@ html{width:100%; overflow-x:hidden;}
       margin: 0 auto;
       width: 700px;
       color: black;
-	margin-right: 250px;
+    margin-right: 250px;
     }
     #logo {
         display: none;
@@ -46,12 +51,13 @@ html{width:100%; overflow-x:hidden;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
     blockquote { font-size: 80%; color: #555; }
-	.twitter-share-button { position: absolute; top: 70px; right: 100px; z-index: 10; }
+    .twitter-share-button { position: absolute; top: 70px; right: 160px; z-index: 10; }
+    .fb-like              { position: absolute; top: 70px; right:  90px; z-index: 10; }
     .gh-link {position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px; color: transparent;
     background: url(http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png); }
-	//.twtr-widget { position: fixed; top: 200px; right: 20px; }
-	.twtr-widget { float: right; margin-top: 108px; margin-right: 10px; }
-	.twtr-widget .twtr-hd > * { display: none; }
+    //.twtr-widget { position: fixed; top: 200px; right: 20px; }
+    .twtr-widget { float: right; margin-top: 108px; margin-right: 10px; }
+    .twtr-widget .twtr-hd > * { display: none; }
     </style>
     
 </head>
@@ -59,6 +65,7 @@ html{width:100%; overflow-x:hidden;}
 <body>
     <img id="logo" src="http://agnoster.github.com/nodeready/logo.png">
   <a class="gh-link" href="http://github.com/agnoster/nodeready" title="Fork me on GitHub">Fork me on Github</a>
+  <iframe class="fb-like" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fagnoster.github.com%2Fnodeready%2F&amp;layout=box_count&amp;show_faces=true&amp;width=55&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:65px;" allowTransparency="true"></iframe>
 <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://agnoster.github.com/nodeready/" data-text="U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U)|bash #onelineinstall for @nodejs" data-count="vertical" data-via="nodeready">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <script>
