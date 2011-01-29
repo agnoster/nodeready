@@ -25,6 +25,7 @@ html{width:100%; overflow-x:hidden;}
       margin: 0 auto;
       width: 700px;
       color: black;
+	margin-right: 250px;
     }
     #logo {
         display: none;
@@ -45,9 +46,12 @@ html{width:100%; overflow-x:hidden;}
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
     blockquote { font-size: 80%; color: #555; }
-    .twitter-share-button { position: fixed; top: 70px; right: 100px; }
+	.twitter-share-button { position: absolute; top: 70px; right: 100px; z-index: 10; }
     .gh-link {position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px; color: transparent;
     background: url(http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png); }
+	//.twtr-widget { position: fixed; top: 200px; right: 20px; }
+	.twtr-widget { float: right; margin-top: 108px; margin-right: 10px; }
+	.twtr-widget .twtr-hd > * { display: none; }
     </style>
     
 </head>
@@ -56,6 +60,38 @@ html{width:100%; overflow-x:hidden;}
     <img id="logo" src="http://agnoster.github.com/nodeready/logo.png">
   <a class="gh-link" href="http://github.com/agnoster/nodeready" title="Fork me on GitHub">Fork me on Github</a>
 <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://agnoster.github.com/nodeready/" data-text="U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U)|bash #onelineinstall for @nodejs" data-count="vertical" data-via="nodeready">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'profile',
+  rpp: 3,
+  interval: 6000,
+  width: 200,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#f00034',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#000000',
+      links: '#f00036'
+    }
+  },
+  features: {
+    scrollbar: false,
+    loop: false,
+    live: false,
+    hashtags: true,
+    timestamp: true,
+    avatars: false,
+    behavior: 'all'
+  }
+}).render().setUser('nodeready').start();
+</script>
+
 
   <div id="container">
 
