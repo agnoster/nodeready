@@ -63,7 +63,7 @@ Caveats
 
 [nodeready] installs everything to `~/.nvm/`, owned by your user.
 
-- **Pro**: you don't need to sudo.
+- **Pro**: you don't need to sudo, and it's easy to clean up (just `rm -rf ~/.nvm`)
 - **Con**: maybe you wanted a system-wide version. Weirdo.
 
 > [nodeready] is highly experimental, and comes with no guarantee, express or implied, that your use of it won't result in adverse effects up to and including the end of life as we know it.
@@ -103,7 +103,10 @@ To [Joshua Frye], creator of [Rails Ready] and, unless I'm misremembering, the [
 Tinkering
 ---------
 
-Please do. [Fork away!][github/nodeready] Don't be evil, or at least, not in a bad way. And whenever possible, make html pages that are also shell scripts, or shell commands that are also tweets.
+Please do. [Fork off!][github/nodeready] It's under the [MIT License][license] - I tried to make a license that required offerings in slinkies, but my lawyers assure me that neither they, nor any such licenses, exist.
+
+Don't be evil, or at least, not in a bad way. And whenever possible, make html pages that are also shell scripts, or shell commands that are also tweets.
+
 
 [Rails Ready]:      https://github.com/joshfng/railsready
 [node]:             http://nodejs.org/
@@ -121,3 +124,4 @@ Please do. [Fork away!][github/nodeready] Don't be evil, or at least, not in a b
 [nvm.sh]:           https://github.com/agnoster/nvm/blob/master/nvm.sh
 [email]:            mailto:nodeready@agnoster.net
 [twitter]:          http://twitter.com/nodeready
+[license]:      https://github.com/agnoster/nodeready/blob/master/LICENSE.md
