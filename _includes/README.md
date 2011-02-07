@@ -1,5 +1,5 @@
 ✣ nodeready
-=========
+===========
 
 **[nodeready]** is a **one-step installer** for a fully-functioning **[node.js][node] development environment**.
 
@@ -103,7 +103,7 @@ To [Joshua Frye], creator of [Rails Ready] and, unless I'm misremembering, the [
 Tinkering
 ---------
 
-Please do. [Fork off!][github/nodeready] It's under the [MIT License][license] - I tried to make a license that required offerings in slinkies, but my lawyers assure me that neither they, nor any such licenses, exist.
+[Fork off!][github/nodeready] (and submit pull requests back for cool stuff) [nodeready] is under the [MIT License][license] - I tried to make a license that required offerings in slinkies, but my lawyers assure me that neither they, nor any such licenses, exist.
 
 Don't be evil, or at least, not in a bad way. And whenever possible, make html pages that are also shell scripts, or shell commands that are also tweets.
 
