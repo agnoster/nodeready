@@ -13,7 +13,7 @@ What does it install?
 ---------------------
 
 1. [nvm] -- [Tim Caswell]'s Node Version Manager
-2. [node] -- The latest, greatest version (0.3.6, as of this writing)
+2. [node] -- The latest, greatest version (0.4.0, as of this writing)
 3. [npm] -- [Isaac Z. Schlueter]'s Node Package Manager
 
 > NB: [nodeready] currently uses [my fork][agnoster/nvm] of [nvm], as there are some nice features for version detection and whatnot in there. These features have been deemed unsafe for mass consumption as of yet, though, so... you might want to put on lead underpants before using it.
@@ -25,7 +25,7 @@ Run [node]!
 
     $ node
     > process.version
-    'v0.3.6'
+    'v0.4.0'
     > function fib(n){return (n>2)?(fib(n-1)+fib(n-2)):n;}; fib(10);
     89
 
@@ -39,7 +39,7 @@ Install packages with [npm]!
     $ npm ls installed
     npm info it worked if it ends with ok
     npm info using npm@0.2.15
-    npm info using node@v0.3.6
+    npm info using node@v0.4.0
     npm@0.2.15                A package manager for node    =isaacs active installed remote package manager modules install package.json
     npm ok
     $ npm install zappa #amirite?
@@ -52,9 +52,9 @@ Use [nvm] to get the latest node!
 
     $ nvm sync
     # syncing with nodejs.org... done.
-    NEW latest: v0.3.7
+    NEW latest: v0.4.0
     $ nvm install latest
-    $ nvm alias default v0.3.7
+    $ nvm alias default v0.4.0
 
 And much, much more! Use `nvm help` and `npm help`, they are your friend. Remember: [nvm] manages your installs of [node], and [npm] manages the packages.
 
