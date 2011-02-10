@@ -119,7 +119,7 @@ else
 	VERSION=`$CURL - http://nodejs.org/ 2>>$LOGFILE | grep -i -A 1 unstable | tail -n1 | sed -e 's/.*node-//' -e 's/.tar.gz.*//'`
 	hmm "couldn't use 'nvm sync' to get latest version"
 	if [ "$VERSION" = "" ]; then
-		VERSION="v0.3.6"
+		VERSION="v0.4.0"
 		hmm "falling back to installing $VERSION"
 	else
 		yay "the website says latest is $VERSION, so we'll just trust them"
