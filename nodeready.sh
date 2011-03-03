@@ -90,7 +90,7 @@ NVM_DIR="$HOME/.nvm"
 
 run mkdir -p "$NVM_DIR"
 if [ ! -s "$NVM_DIR/nvm.sh" ]; then
-	$CURL - 'https://github.com/agnoster/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh" 2>>$LOGFILE || die "could not download nvm.sh"
+	$CURL - 'https://github.com/creationix/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh" 2>>$LOGFILE || die "could not download nvm.sh"
 	if ! grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1; then
 		BK=".bash_profile.$RANDOM"
 		say "backing up ~/.bash_profile to ~/$BK"
@@ -119,7 +119,7 @@ else
 	VERSION=`$CURL - http://nodejs.org/ 2>>$LOGFILE | grep -i -A 1 unstable | tail -n1 | sed -e 's/.*node-//' -e 's/.tar.gz.*//'`
 	hmm "couldn't use 'nvm sync' to get latest version"
 	if [ "$VERSION" = "" ]; then
-		VERSION="v0.4.0"
+		VERSION="v0.4.2"
 		hmm "falling back to installing $VERSION"
 	else
 		yay "the website says latest is $VERSION, so we'll just trust them"
