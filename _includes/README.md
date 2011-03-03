@@ -13,10 +13,8 @@ What does it install?
 ---------------------
 
 1. [nvm] -- [Tim Caswell]'s Node Version Manager
-2. [node] -- The latest, greatest version (0.4.0, as of this writing)
+2. [node] -- The latest, greatest version (0.4.2, as of this writing)
 3. [npm] -- [Isaac Z. Schlueter]'s Node Package Manager
-
-> NB: [nodeready] currently uses [my fork][agnoster/nvm] of [nvm], as there are some nice features for version detection and whatnot in there. These features have been deemed unsafe for mass consumption as of yet, though, so... you might want to put on lead underpants before using it.
 
 And then?
 ---------
@@ -25,7 +23,7 @@ Run [node]!
 
     $ node
     > process.version
-    'v0.4.0'
+    'v0.4.2'
     > function fib(n){return (n>2)?(fib(n-1)+fib(n-2)):n;}; fib(10);
     89
 
@@ -39,7 +37,7 @@ Install packages with [npm]!
     $ npm ls installed
     npm info it worked if it ends with ok
     npm info using npm@0.2.15
-    npm info using node@v0.4.0
+    npm info using node@v0.4.2
     npm@0.2.15                A package manager for node    =isaacs active installed remote package manager modules install package.json
     npm ok
     $ npm install zappa #amirite?
@@ -52,9 +50,9 @@ Use [nvm] to get the latest node!
 
     $ nvm sync
     # syncing with nodejs.org... done.
-    NEW latest: v0.4.0
+    NEW latest: v0.4.2
     $ nvm install latest
-    $ nvm alias default v0.4.0
+    $ nvm alias default v0.4.2
 
 And much, much more! Use `nvm help` and `npm help`, they are your friend. Remember: [nvm] manages your installs of [node], and [npm] manages the packages.
 
@@ -111,7 +109,6 @@ Don't be evil, or at least, not in a bad way. And whenever possible, make html p
 [Rails Ready]:      https://github.com/joshfng/railsready
 [node]:             http://nodejs.org/
 [nvm]:              https://github.com/creationix/nvm
-[agnoster/nvm]:     https://github.com/agnoster/nvm
 [npm]:              http://npmjs.org/
 [nodeready]:        http://agnoster.github.com/nodeready/
 [opinionated]:      http://gettingreal.37signals.com/ch04_Make_Opinionated_Software.php
