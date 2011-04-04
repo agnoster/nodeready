@@ -92,9 +92,11 @@ run mkdir -p "$NVM_DIR"
 if [ ! -s "$NVM_DIR/nvm.sh" ]; then
 	$CURL - 'https://github.com/creationix/nvm/raw/master/nvm.sh' > "$NVM_DIR/nvm.sh" 2>>$LOGFILE || die "could not download nvm.sh"
 	if ! grep "nvm.sh" ~/.bashrc ~/.bash_profile >/dev/null 2>&1; then
-		BK=".bash_profile.$RANDOM"
-		say "backing up ~/.bash_profile to ~/$BK"
-		run cp ~/.bash_profile ~/$BK || die "could not copy... to your own home dir. huh."
+                if [ -r ~/.bash_profile ] ; then
+                        BK=".bash_profile.$RANDOM"
+                        say "backing up ~/.bash_profile to ~/$BK"
+                        run cp ~/.bash_profile ~/$BK || die "could not copy... to your own home dir. huh."
+                fi
 		(cat <<-NVMLOAD
 		[[ -s "\$HOME/.nvm/nvm.sh" ]] && source "\$HOME/.nvm/nvm.sh" # Load nvm into shell session
 		NVMLOAD
