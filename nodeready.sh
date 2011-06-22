@@ -76,7 +76,7 @@ elif has wget; then
 else
 	hmm "did not find curl or wget, trying to install curl..."
 	if inst curl; then
-		use_curl curl -C - -o
+		use_curl curl -L -C - -o
 	elif inst wget; then
 		use_curl wget --no-check-certificate -c -O
 	else
@@ -108,7 +108,7 @@ else
 	echo "    rm -rf ~/.nvm"
 fi
 
-source "$NVM_DIR/nvm.sh" >>$LOGFILE 2>&1 
+source "$NVM_DIR/nvm.sh" >>$LOGFILE 2>&1
 type nvm 2>&1 | grep "function" >>$LOGFILE 2>&1 || {
 	head -n1 "$NVM_DIR/nvm.sh" | grep "\<html" >>$LOGFILE 2>&1 && hmm "maybe github is down?"
 	die "failed to load nvm"
@@ -142,3 +142,4 @@ say "Thank you for using nodeready, still in testing. If everything seemed to wo
 say "I'd appreciate a tweet @nodeready or an email to nodeready@agnoster.net"
 say "letting me know what system you installed it on."
 echo
+
