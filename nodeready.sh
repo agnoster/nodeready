@@ -70,7 +70,7 @@ fi
 
 # Well, we need a way to download files for sure
 if has curl; then
-	use_curl curl -C - -o
+	use_curl curl -L -C - -o
 elif has wget; then
 	use_curl wget --no-check-certificate -c -O
 else
