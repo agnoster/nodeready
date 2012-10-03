@@ -1,6 +1,10 @@
 ✣ nodeready
 ===========
 
+> **STATUS: DEFUNCT** - Once upon a time, node was hard to install. Nowadays, [nodejs.org](http://nodejs.org/) even offers binary downloads. This project was still fun, I got to play around with interleaving bash and HTML to create a page that also functioned as a shell script installer (on multiple systems).
+>
+> Future plans: I might extract/repurpose the threading, the github page generation, and/or the cross-platform POSIX installer thingy.
+
 **[nodeready]** is a **one-step installer** for a fully-functioning **[node.js][node] development environment**.
 
     U=http://agnoster.github.com/nodeready/;(curl $U||wget -O - $U||lynx -source $U)|bash
